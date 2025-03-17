@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rentabilidade da Carteira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3fdf3;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #e6f7e6;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #267326;
+        }
+        .highlight {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1a4d1a;
+        }
+        .ganhou {
+            color: green;
+            font-weight: bold;
+        }
+        .perdeu {
+            color: red;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: gray;
+        }
+        .chart {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rentabilidade da Sua Carteira de Investimentos</h1>
+    
+    <div class="container">
+        <p>A rentabilidade da sua carteira foi de <span class="highlight">{{ wallet_rent|round(2) }}%</span></p>
+        <p>A rentabilidade do índice Bovespa foi de <span class="highlight">{{ index_rent|round(2) }}%</span></p>
+
+        {% if wallet_rent > index_rent %}
+            <p class="ganhou">Sua carteira superou o índice de referência!</p>
+        {% else %}
+            <p class="perdeu">Sua carteira não superou o índice de referência.</p>
+        {% endif %}
+    </div>
+
+    <div class="chart">
+        <h3>Evolução dos Ativos da Carteira</h3>
+        <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico da Carteira">
+    </div>
+
+    <div class="footer">
+        Desenvolvido com 💚 por Nair Santos de Sousa.
+    </div>
+</body>
+</html>
